@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Braille Smart E-Book | Transforming Education for Visually Impaired Students</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s both;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Stats Section */
+        .stats {
+            background: #f8f9fa;
+            padding: 60px 20px;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .problem-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: scale(1.05);
+        }
+
+        .problem-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .problem-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Solution Section */
+        .solution {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+        }
+
+        .solution-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .solution-feature {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .solution-feature h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        /* Technical Specs */
+        .specs {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .spec-item {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .spec-item strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* Comparison Table */
+        .comparison {
+            padding: 80px 20px;
+            background: #f8f9fa;
+        }
+
+        .comparison-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-top: 40px;
+        }
+
+        th, td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* Impact Section */
+        .impact {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .impact-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .impact-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        /* Call to Action */
+        .final-cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .final-cta p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Braille Smart E-Book</h1>
+            <p>Transforming Education for Visually Impaired Students Across India</p>
+            <a href="#solution" class="cta-button">Discover Our Innovation</a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">₹4-10K</div>
+                <div class="stat-label">Device Cost (20x Cheaper)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">250g</div>
+                <div class="stat-label">Total Weight</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">400+</div>
+                <div class="stat-label">Textbooks Stored</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">8-12h</div>
+                <div class="stat-label">Battery Life</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <h2 class="section-title">The Challenge We're Solving</h2>
+        <div class="problem-grid">
+            <div class="problem-card">
+                <div class="problem-icon">📚</div>
+                <h3>Book Famine</h3>
+                <p>Less than 1% of published books are available in Braille format, leaving millions of students without access to education materials.</p>
+            </div>
+            <div class="problem-card">
+                <div class="problem-icon">💰</div>
+                <h3>Cost Barrier</h3>
+                <p>Commercial Braille devices cost ₹2+ lakhs, making them unaffordable for most Indian schools and families.</p>
+            </div>
+            <div class="problem-card">
+                <div class="problem-icon">🚫</div>
+                <h3>Limited Access</h3>
+                <p>Only wealthy families and government institutions can afford existing solutions, creating massive educational inequality.</p>
+            </div>
+            <div class="problem-card">
+                <div class="problem-icon">⚖️</div>
+                <h3>Portability Issues</h3>
+                <p>Paper Braille books weigh 5-10kg per textbook, making it impossible for students to carry their study materials.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution" id="solution">
+        <div class="solution-content">
+            <h2 class="section-title">Our Revolutionary Solution</h2>
+            <p style="text-align: center; font-size: 1.2rem; max-width: 800px; margin: 0 auto;">A smart, affordable, accessible Braille device powered by ESP32-CAM that any Indian school can implement.</p>
+            
+            <div class="solution-grid">
+                <div class="solution-feature">
+                    <h3>💵 Affordable</h3>
+                    <p>₹4,000-₹10,000 per unit - 20 times cheaper than commercial alternatives. Schools can equip multiple students instead of none.</p>
+                </div>
+                <div class="solution-feature">
+                    <h3>🎒 Portable</h3>
+                    <p>Weighs less than 300 grams - lighter than most textbooks. Students can carry their entire digital library in their school bag.</p>
+                </div>
+                <div class="solution-feature">
+                    <h3>🇮🇳 Locally Available</h3>
+                    <p>Built using components from Indian electronics vendors. Schools can source, assemble, and repair devices locally.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specs -->
+    <section class="specs">
+        <h2 class="section-title">Powered by ESP32-CAM</h2>
+        <div class="specs-grid">
+            <div class="spec-item">
+                <strong>Processor</strong>
+                Dual-core 32-bit ESP32 for smooth multitasking
+            </div>
+            <div class="spec-item">
+                <strong>Connectivity</strong>
+                WiFi 802.11 b/g/n + Bluetooth 4.2
+            </div>
+            <div class="spec-item">
+                <strong>Memory</strong>
+                520KB RAM + 4MB PSRAM
+            </div>
+            <div class="spec-item">
+                <strong>Storage</strong>
+                MicroSD support up to 4GB
+            </div>
+            <div class="spec-item">
+                <strong>Power</strong>
+                6mA deep sleep, 120-180mA active reading
+            </div>
+            <div class="spec-item">
+                <strong>Dimensions</strong>
+                27×40.5×4.5mm, weighing just 8-10g
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="comparison">
+        <div class="comparison-content">
+            <h2 class="section-title">How We Compare</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Our Device</th>
+                        <th>BrailleNote Touch</th>
+                        <th>Orbit Reader 20</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Cost</strong></td>
+                        <td>₹4,000-10,000</td>
+                        <td>₹2,00,000+</td>
+                        <td>₹80,000+</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Weight</strong></td>
+                        <td>250-350g</td>
+                        <td>800g+</td>
+                        <td>600g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Availability</strong></td>
+                        <td>Local, easy to source</td>
+                        <td>Import only</td>
+                        <td>Limited supply</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Repair</strong></td>
+                        <td>Can be done in school labs</td>
+                        <td>Requires sending abroad</td>
+                        <td>Specialized service</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Accessibility</strong></td>
+                        <td>Multiple units per school</td>
+                        <td>Perhaps 1 per school</td>
+                        <td>Maybe 1 per district</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact">
+        <h2 class="section-title">Educational Impact</h2>
+        <div class="impact-grid">
+            <div class="impact-card">
+                <h3>📚 Access to Content</h3>
+                <p>Students can read any digital textbook, notes, and research material instantly. No more waiting for Braille conversions.</p>
+            </div>
+            <div class="impact-card">
+                <h3>🎯 Learning Independence</h3>
+                <p>Full editing, searching, and note-taking abilities empower students to manage their own studies effectively.</p>
+            </div>
+            <div class="impact-card">
+                <h3>👥 Classroom Inclusion</h3>
+                <p>Teachers can see what students are reading in real-time through WiFi, enabling better support and engagement.</p>
+            </div>
+            <div class="impact-card">
+                <h3>🚀 Skill Development</h3>
+                <p>Daily interaction improves Braille literacy, tech skills, and prepares students for modern careers.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <h2>Join the Revolution</h2>
+        <p>Help us transform education for millions of visually impaired students across India</p>
+        <a href="#" class="cta-button">Get Involved</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Braille Smart E-Book Project | Made with ❤️ in Goa, India</p>
+        <p style="margin-top: 10px; opacity: 0.8;">Empowering education through accessible technology</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 1s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-card, .problem-card, .solution-feature, .spec-item, .impact-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
