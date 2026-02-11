@@ -1,565 +1,627 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Braille Smart E-Book | Transforming Education for Visually Impaired Students</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 120px 20px 80px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
-            opacity: 0.3;
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 30px;
-            opacity: 0.95;
-            animation: fadeInUp 1s ease 0.2s both;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            background: white;
-            color: #667eea;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            animation: fadeInUp 1s ease 0.4s both;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
-        /* Stats Section */
-        .stats {
-            background: #f8f9fa;
-            padding: 60px 20px;
-        }
-
-        .stats-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            color: #666;
-        }
-
-        /* Problem Section */
-        .problem {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 50px;
-            color: #333;
-        }
-
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .problem-card {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            transition: transform 0.3s ease;
-        }
-
-        .problem-card:hover {
-            transform: scale(1.05);
-        }
-
-        .problem-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        .problem-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        /* Solution Section */
-        .solution {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 80px 20px;
-        }
-
-        .solution-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .solution-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
-        }
-
-        .solution-feature {
-            background: rgba(255,255,255,0.1);
-            padding: 30px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .solution-feature h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-
-        /* Technical Specs */
-        .specs {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .specs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .spec-item {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
-        }
-
-        .spec-item strong {
-            color: #667eea;
-            display: block;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        /* Comparison Table */
-        .comparison {
-            padding: 80px 20px;
-            background: #f8f9fa;
-        }
-
-        .comparison-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        table {
-            width: 100%;
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin-top: 40px;
-        }
-
-        th, td {
-            padding: 20px;
-            text-align: left;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        th {
-            background: #667eea;
-            color: white;
-            font-weight: bold;
-        }
-
-        tr:hover {
-            background: #f8f9fa;
-        }
-
-        /* Impact Section */
-        .impact {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .impact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .impact-card {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .impact-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        /* Call to Action */
-        .final-cta {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        .final-cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .final-cta p {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-
-        /* Footer */
-        footer {
-            background: #2d3748;
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Braille Smart E-Book | Empowering Every Mind in India</title>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --fire:#FF3D2E;--amber:#FFAB00;--lime:#B8FF35;--cyan:#00E5FF;--violet:#7C3AED;
+  --ink:#07060F;--ink2:#0F0E1F;--ink3:#161430;
+  --glass:rgba(255,255,255,0.04);--glass2:rgba(255,255,255,0.08);
+  --border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.14);
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:'Cabinet Grotesk',sans-serif;background:var(--ink);color:#fff;overflow-x:hidden;cursor:none}
+#cursor{position:fixed;width:12px;height:12px;border-radius:50%;background:var(--lime);pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .2s,height .2s;mix-blend-mode:difference}
+#cursor-ring{position:fixed;width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(184,255,53,0.5);pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .12s ease;mix-blend-mode:difference}
+#particle-canvas{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.45}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:rgba(7,6,15,0.7);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-brand{font-family:'Space Mono',monospace;font-weight:700;font-size:.95rem;color:var(--lime);letter-spacing:.08em;display:flex;align-items:center;gap:.6rem}
+.nav-dots{display:flex;gap:3px;flex-wrap:wrap;width:20px}
+.nav-dots span{display:block;width:5px;height:5px;border-radius:50%;background:var(--lime)}
+.nav-dots span.off{background:rgba(184,255,53,0.2)}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--lime);transition:width .3s}
+.nav-links a:hover{color:var(--lime)}.nav-links a:hover::after{width:100%}
+.nav-pill{background:var(--lime);color:var(--ink);font-family:'Space Mono',monospace;font-weight:700;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:.55rem 1.4rem;border:none;border-radius:100px;cursor:none;transition:transform .2s,box-shadow .2s}
+.nav-pill:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 8px 30px rgba(184,255,53,.4)}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:7rem 2rem 4rem}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 70% at 50% 50%,black 40%,transparent 100%)}
+.hero-glow{position:absolute;width:700px;height:700px;border-radius:50%;background:conic-gradient(from 0deg,var(--violet),var(--cyan),var(--lime),var(--amber),var(--fire),var(--violet));filter:blur(120px);opacity:.18;top:50%;left:50%;transform:translate(-50%,-50%);animation:spin 20s linear infinite}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:1000px}
+.eyebrow{display:inline-flex;align-items:center;gap:.7rem;background:rgba(184,255,53,.08);border:1px solid rgba(184,255,53,.25);color:var(--lime);padding:.45rem 1.2rem;border-radius:100px;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:2rem;animation:sld .7s ease both}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--lime);animation:pulse 1.4s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(184,255,53,.5)}50%{box-shadow:0 0 0 6px rgba(184,255,53,0)}}
+h1.big{font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(3.2rem,8.5vw,7.5rem);line-height:.95;letter-spacing:-.04em;margin-bottom:1.8rem;animation:sld .7s ease .1s both}
+.grad-fire{background:linear-gradient(135deg,var(--fire),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:hue 4s ease-in-out infinite}
+.grad-cyan{background:linear-gradient(135deg,var(--cyan),var(--lime));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+@keyframes hue{0%,100%{filter:hue-rotate(0deg)}50%{filter:hue-rotate(30deg)}}
+.hero-sub{font-size:clamp(1rem,2vw,1.2rem);color:rgba(255,255,255,.55);max-width:580px;margin:0 auto 3rem;line-height:1.75;font-weight:400;animation:sld .7s ease .2s both}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:sld .7s ease .3s both}
+.btn-lime{position:relative;background:var(--lime);color:var(--ink);font-family:'Space Mono',monospace;font-weight:700;font-size:.82rem;letter-spacing:.06em;padding:.9rem 2.4rem;border:none;border-radius:100px;cursor:none;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.btn-lime::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.3),transparent);opacity:0;transition:opacity .3s}
+.btn-lime:hover::before{opacity:1}
+.btn-lime:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 16px 50px rgba(184,255,53,.5)}
+.btn-outline{background:transparent;color:#fff;font-family:'Space Mono',monospace;font-weight:700;font-size:.82rem;letter-spacing:.06em;padding:.9rem 2.4rem;border:1.5px solid var(--border2);border-radius:100px;cursor:none;transition:all .2s}
+.btn-outline:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,229,255,.2)}
+.hero-device{position:relative;margin:4rem auto 0;width:320px;animation:float 5s ease-in-out infinite;perspective:800px}
+@keyframes float{0%,100%{transform:translateY(0) rotateX(4deg) rotateY(-4deg)}50%{transform:translateY(-16px) rotateX(2deg) rotateY(3deg)}}
+.dev-body{background:linear-gradient(145deg,#1a1830,#0f0e1f);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:1.8rem;box-shadow:0 40px 80px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.08)}
+.dev-screen{background:#07060f;border-radius:12px;padding:1.2rem;border:1px solid var(--border);min-height:80px;display:flex;flex-direction:column;gap:.7rem}
+.braille-row{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+.bcell{display:inline-grid;grid-template-columns:1fr 1fr;gap:3.5px}
+.bp{width:7px;height:7px;border-radius:50%;transition:all .4s cubic-bezier(.34,1.56,.64,1)}
+.bp.on{background:var(--cyan);box-shadow:0 0 8px var(--cyan),0 0 16px rgba(0,229,255,.3)}
+.bp.off{background:rgba(255,255,255,.06)}
+.dev-lbl{font-family:'Space Mono',monospace;font-size:.55rem;color:rgba(255,255,255,.25);letter-spacing:.1em;margin-top:.5rem}
+.dev-btns{display:flex;gap:.5rem;margin-top:1rem}
+.dv-btn{flex:1;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:8px;padding:.5rem;font-size:.58rem;font-family:'Space Mono',monospace;color:rgba(255,255,255,.4);cursor:none;transition:all .2s;text-align:center;letter-spacing:.05em}
+.dv-btn:hover{background:rgba(184,255,53,.1);border-color:rgba(184,255,53,.3);color:var(--lime)}
+.dev-ring{position:absolute;inset:-20px;border-radius:36px;background:conic-gradient(from 0deg,var(--cyan),var(--lime),var(--amber),var(--fire),var(--violet),var(--cyan));filter:blur(25px);opacity:.2;z-index:-1;animation:spin 8s linear infinite}
+.stats-row{display:flex;border:1px solid var(--border);border-radius:20px;overflow:hidden;background:var(--glass);backdrop-filter:blur(20px);max-width:700px;margin:4rem auto 0;animation:sld .7s ease .4s both}
+.hst{flex:1;padding:1.3rem 1.2rem;text-align:center;border-right:1px solid var(--border);transition:background .3s}
+.hst:last-child{border-right:none}.hst:hover{background:rgba(255,255,255,.04)}
+.hst-n{font-family:'Clash Display',sans-serif;font-weight:700;font-size:1.9rem;line-height:1;display:block}
+.hst-l{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:.3rem;display:block}
+@keyframes sld{from{opacity:0;transform:translateY(-25px)}to{opacity:1;transform:translateY(0)}}
+.marquee-strip{background:var(--lime);padding:.65rem 0;overflow:hidden;position:relative;z-index:2}
+.marquee-inner{display:flex;gap:0;animation:marquee 18s linear infinite;white-space:nowrap}
+.mq-item{font-family:'Space Mono',monospace;font-weight:700;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);padding:0 2rem;display:flex;align-items:center;gap:1rem;flex-shrink:0}
+.mq-item .sep{color:rgba(7,6,15,.3)}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+section{padding:7rem 2rem;position:relative;z-index:1}
+.wrap{max-width:1140px;margin:0 auto}
+.chip{display:inline-flex;align-items:center;gap:.5rem;font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.35rem .9rem;border-radius:100px;margin-bottom:1rem}
+.ch-lime{background:rgba(184,255,53,.1);color:var(--lime);border:1px solid rgba(184,255,53,.25)}
+.ch-fire{background:rgba(255,61,46,.1);color:var(--fire);border:1px solid rgba(255,61,46,.25)}
+.ch-cyan{background:rgba(0,229,255,.1);color:var(--cyan);border:1px solid rgba(0,229,255,.25)}
+.ch-amber{background:rgba(255,171,0,.1);color:var(--amber);border:1px solid rgba(255,171,0,.25)}
+h2.st{font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(2.4rem,5vw,4rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:1.2rem}
+.ss{font-size:1rem;color:rgba(255,255,255,.45);max-width:520px;line-height:1.75;font-weight:400}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:3rem}
+.bc{background:var(--glass);border:1px solid var(--border);border-radius:22px;padding:2rem;transition:transform .3s,border-color .3s;position:relative;overflow:hidden}
+.bc::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.06) 0%,transparent 60%);opacity:0;transition:opacity .4s;pointer-events:none}
+.bc:hover::before{opacity:1}.bc:hover{transform:translateY(-6px);border-color:var(--border2)}
+.bc.w2{grid-column:span 2}
+.b-ico{font-size:2.5rem;margin-bottom:1rem;display:block}
+.b-num{font-family:'Clash Display',sans-serif;font-weight:700;font-size:3.5rem;line-height:1;margin-bottom:.4rem}
+.b-tit{font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:1.1rem;margin-bottom:.5rem}
+.b-desc{font-size:.87rem;color:rgba(255,255,255,.45);line-height:1.65}
+.b-bg{position:absolute;bottom:-.5rem;right:.8rem;font-family:'Clash Display',sans-serif;font-weight:700;font-size:5rem;opacity:.04;line-height:1;pointer-events:none;white-space:nowrap}
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem}
+.sc{border-radius:24px;padding:2.2rem;position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.34,1.56,.64,1);cursor:none}
+.sc:hover{transform:translateY(-10px) scale(1.02)}
+.sc .shine{position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15) 0%,rgba(255,255,255,0) 60%);pointer-events:none}
+.sc h3{font-family:'Clash Display',sans-serif;font-weight:700;font-size:1.6rem;margin-bottom:.7rem}
+.sc p{font-size:.88rem;opacity:.82;line-height:1.65}
+.sc1{background:linear-gradient(145deg,#FF3D2E,#FF8C00)}.sc2{background:linear-gradient(145deg,#00C6FF,#0072FF)}.sc3{background:linear-gradient(145deg,#7C3AED,#C026D3)}
+.sc4{background:linear-gradient(145deg,#B8FF35,#00E5FF);color:var(--ink)}.sc4 p{opacity:.7}
+.sc5{background:linear-gradient(145deg,#FF6B6B,#FF8E53)}.sc6{background:linear-gradient(145deg,#11998e,#38ef7d)}
+.sc-badge{position:absolute;top:1.2rem;right:1.2rem;background:rgba(0,0,0,.25);border-radius:100px;padding:.25rem .7rem;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.sc-ico{font-size:3rem;margin-bottom:1.2rem;display:block}
+.int-sect{background:var(--ink2)}
+.int-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem}
+.int-dev{background:linear-gradient(145deg,#1c1b33,#111020);border:1px solid rgba(255,255,255,.1);border-radius:28px;padding:2.5rem;box-shadow:0 50px 100px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.07);position:relative}
+.int-dev::after{content:'ESP32-CAM';position:absolute;bottom:1.5rem;right:1.8rem;font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;color:rgba(255,255,255,.15);text-transform:uppercase}
+.b-display{background:var(--ink);border-radius:14px;padding:1.5rem;border:1px solid rgba(255,255,255,.08);min-height:120px;display:flex;flex-direction:column;gap:1rem;position:relative;overflow:hidden}
+.b-display::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(0,229,255,.04) 0%,transparent 60%);pointer-events:none}
+.b-row{display:flex;gap:8px;flex-wrap:wrap}
+.bch-grp{text-align:center}
+.bch-grid{display:inline-grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:.3rem}
+.bpt{width:8px;height:8px;border-radius:50%;transition:all .3s cubic-bezier(.34,1.56,.64,1)}
+.bpt.on{background:var(--cyan);box-shadow:0 0 8px var(--cyan),0 0 16px rgba(0,229,255,.3)}
+.bpt.off{background:rgba(255,255,255,.06)}
+.bch-lbl{font-family:'Space Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.3);text-align:center}
+.int-ctrls{display:flex;gap:.7rem;margin-top:1.5rem;flex-wrap:wrap}
+.ib{flex:1;min-width:70px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:12px;padding:.7rem .5rem;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.06em;color:rgba(255,255,255,.5);cursor:none;transition:all .25s;text-align:center;text-transform:uppercase}
+.ib:hover,.ib.active{background:rgba(0,229,255,.1);border-color:rgba(0,229,255,.4);color:var(--cyan);transform:translateY(-2px)}
+.wifi-row{display:flex;align-items:center;gap:.7rem;margin-top:1.2rem;padding:1rem;background:rgba(184,255,53,.04);border:1px solid rgba(184,255,53,.12);border-radius:12px}
+.wifi-text{font-size:.72rem;color:rgba(255,255,255,.45);font-family:'Space Mono',monospace;flex:1}
+.wifi-text strong{color:var(--lime);display:block;font-size:.76rem}
+.wifi-bar{height:4px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden;margin-top:.3rem}
+.wifi-fill-el{height:100%;background:var(--lime);border-radius:2px;width:0;transition:width 1.5s ease}
+.int-info{display:flex;flex-direction:column;gap:1.8rem}
+.ii{display:flex;gap:1.2rem;align-items:flex-start}
+.ii-num{font-family:'Clash Display',sans-serif;font-weight:700;font-size:2.8rem;line-height:1;flex-shrink:0;min-width:80px}
+.ii-body h4{font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:1rem;margin-bottom:.3rem}
+.ii-body p{font-size:.84rem;color:rgba(255,255,255,.4);line-height:1.6}
+.trans-sect{background:var(--ink3)}
+.tbox{background:var(--glass);border:1px solid var(--border);border-radius:28px;padding:2.5rem;margin-top:3rem}
+.t-row{display:flex;gap:1rem;margin-bottom:2rem}
+.t-inp{flex:1;background:var(--ink);border:1px solid var(--border);border-radius:14px;padding:1rem 1.4rem;color:#fff;font-family:'Cabinet Grotesk',sans-serif;font-size:1rem;outline:none;transition:border-color .2s}
+.t-inp:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,229,255,.08)}
+.t-inp::placeholder{color:rgba(255,255,255,.2)}
+.t-go{background:var(--cyan);color:var(--ink);font-family:'Space Mono',monospace;font-weight:700;font-size:.78rem;letter-spacing:.06em;padding:1rem 1.8rem;border:none;border-radius:14px;cursor:none;transition:all .2s;white-space:nowrap}
+.t-go:hover{transform:scale(1.04);box-shadow:0 8px 25px rgba(0,229,255,.4)}
+.b-out{background:var(--ink);border-radius:16px;padding:1.5rem;min-height:90px;display:flex;flex-wrap:wrap;gap:1rem;align-items:center}
+.b-placeholder{font-family:'Space Mono',monospace;font-size:.78rem;color:rgba(255,255,255,.2);letter-spacing:.06em}
+.cost-sect{background:var(--ink2)}
+.cost-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:3rem;margin-top:3rem;align-items:start}
+.price-card{background:linear-gradient(145deg,rgba(184,255,53,.08),rgba(0,229,255,.06));border:1px solid rgba(184,255,53,.25);border-radius:28px;padding:2.5rem;text-align:center;position:sticky;top:6rem}
+.p-from{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);font-family:'Space Mono',monospace}
+.p-big{font-family:'Clash Display',sans-serif;font-weight:700;font-size:5rem;line-height:1;color:var(--lime);margin:.3rem 0}
+.p-desc{font-size:.88rem;color:rgba(255,255,255,.45);margin-bottom:1.5rem}
+.saving{margin-top:1.2rem;background:linear-gradient(135deg,rgba(255,171,0,.1),rgba(255,61,46,.1));border:1px solid rgba(255,171,0,.2);border-radius:16px;padding:1.2rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.saving .sbig{font-family:'Clash Display',sans-serif;font-weight:700;font-size:2rem;color:var(--amber)}
+.saving p{font-size:.83rem;color:rgba(255,255,255,.5);line-height:1.5}
+.vs-list-el{display:flex;flex-direction:column;gap:.8rem}
+.vs-r{display:flex;align-items:center;justify-content:space-between;gap:1rem;background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.3rem;transition:all .3s;cursor:none}
+.vs-r:hover{border-color:var(--border2);background:var(--glass2)}
+.vs-r .vn{font-weight:700;font-size:.88rem}
+.vs-r .vp{font-family:'Clash Display',sans-serif;font-weight:700;font-size:1.3rem}
+.vs-bar-el{height:6px;border-radius:3px;transition:width 1.2s cubic-bezier(.34,1.2,.64,1);width:0;margin-top:.5rem}
+.vs-r.winner{background:rgba(184,255,53,.06);border-color:rgba(184,255,53,.3)}
+.vs-r.winner .vp{color:var(--lime)}
+.wb{background:var(--lime);color:var(--ink);font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .6rem;border-radius:100px;font-family:'Space Mono',monospace}
+.breakdown{margin-top:1.5rem;background:var(--glass);border:1px solid var(--border);border-radius:18px;padding:1.5rem}
+.bd-lbl{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);font-family:'Space Mono',monospace;margin-bottom:1rem}
+.bd-row{display:flex;justify-content:space-between;align-items:center;font-size:.87rem;margin-bottom:.6rem}
+.bd-row span:first-child{color:rgba(255,255,255,.5)}.bd-sep{height:1px;background:var(--border);margin:.5rem 0}
+.imp-sect{background:linear-gradient(170deg,var(--ink),#1a0e3a,var(--ink));overflow:hidden;position:relative}
+.imp-sect::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 50%,rgba(124,58,237,.25) 0%,transparent 60%);pointer-events:none}
+.imp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:3rem}
+.imp-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:24px;padding:2rem 1.5rem;text-align:center;transition:transform .3s,border-color .3s;position:relative;overflow:hidden}
+.imp-card:hover{transform:translateY(-8px) scale(1.02);border-color:rgba(255,255,255,.12)}
+.imp-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--fire),var(--amber),var(--lime),var(--cyan));opacity:0;transition:opacity .3s}
+.imp-card:hover::after{opacity:1}
+.imp-n{font-family:'Clash Display',sans-serif;font-weight:700;font-size:3.2rem;line-height:1;margin-bottom:.5rem;background:linear-gradient(135deg,var(--amber),var(--fire));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.imp-l{font-size:.78rem;color:rgba(255,255,255,.4);line-height:1.5}
+.priya{margin-top:4rem;background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(0,229,255,.06));border:1px solid rgba(124,58,237,.25);border-radius:28px;padding:3rem;display:grid;grid-template-columns:auto 1fr;gap:2.5rem;align-items:center}
+.priya-av{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--cyan));display:flex;align-items:center;justify-content:center;font-size:2.5rem;flex-shrink:0;box-shadow:0 0 0 4px rgba(124,58,237,.3),0 0 0 8px rgba(124,58,237,.1)}
+.priya q{font-style:italic;font-size:1.05rem;color:rgba(255,255,255,.75);line-height:1.75;display:block;margin-bottom:.8rem}
+.priya .credit{font-size:.78rem;color:var(--violet);font-weight:700;letter-spacing:.05em}
+.timeline{position:relative;margin-top:4rem;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--cyan),var(--violet))}
+.t-item{position:relative;padding:0 0 3.5rem 2.5rem;opacity:.4;transition:opacity .4s}
+.t-item.active,.t-item.done{opacity:1}
+.t-item::before{content:'';position:absolute;left:-7px;top:3px;width:16px;height:16px;border-radius:50%;background:var(--ink2);border:2px solid rgba(255,255,255,.2);transition:all .3s}
+.t-item.active::before{background:var(--cyan);border-color:var(--cyan);box-shadow:0 0 0 4px rgba(0,229,255,.2),0 0 20px rgba(0,229,255,.4)}
+.t-item.done::before{background:var(--lime);border-color:var(--lime);box-shadow:0 0 0 4px rgba(184,255,53,.2)}
+.t-ph{font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.4rem;font-family:'Space Mono',monospace}
+.t-ti{font-family:'Clash Display',sans-serif;font-weight:700;font-size:1.6rem;margin-bottom:.6rem}
+.t-de{font-size:.88rem;color:rgba(255,255,255,.45);line-height:1.65;max-width:560px}
+.t-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem}
+.t-tag{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:100px;padding:.22rem .7rem;font-size:.7rem;color:rgba(255,255,255,.4)}
+.faq-list{margin-top:3rem;display:flex;flex-direction:column;gap:.7rem}
+.faq-item{background:var(--glass);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:border-color .3s}
+.faq-item.open{border-color:rgba(0,229,255,.3)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:1.3rem 1.6rem;cursor:none;gap:1rem}
+.faq-q span{font-weight:700;font-size:.95rem}
+.faq-icon{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;transition:transform .3s,background .3s}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:rgba(0,229,255,.15);color:var(--cyan)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.7}
+.faq-a-in{padding:0 1.6rem 1.3rem}
+.cta-sect{background:var(--ink);text-align:center;padding:8rem 2rem;background-image:radial-gradient(circle at 30% 50%,rgba(124,58,237,.15) 0%,transparent 50%),radial-gradient(circle at 70% 50%,rgba(0,229,255,.1) 0%,transparent 50%)}
+.cta-h{font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(2.5rem,6vw,5rem);line-height:1.05;letter-spacing:-.035em;max-width:750px;margin:0 auto 1.5rem}
+.cta-p{color:rgba(255,255,255,.4);max-width:450px;margin:0 auto 3rem;line-height:1.7}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.modal-ov{display:none;position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);align-items:center;justify-content:center}
+.modal-ov.open{display:flex}
+.modal{background:#12112a;border:1px solid rgba(255,255,255,.1);border-radius:30px;padding:3rem;max-width:500px;width:90%;position:relative;animation:mpop .35s cubic-bezier(.34,1.56,.64,1)}
+@keyframes mpop{from{opacity:0;transform:scale(.85) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.m-close{position:absolute;top:1.2rem;right:1.5rem;background:rgba(255,255,255,.07);border:none;color:rgba(255,255,255,.5);width:32px;height:32px;border-radius:50%;font-size:1rem;cursor:none;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.m-close:hover{background:rgba(255,61,46,.2);color:var(--fire)}
+.modal h3{font-family:'Clash Display',sans-serif;font-weight:700;font-size:1.8rem;margin-bottom:.5rem}
+.modal p{color:rgba(255,255,255,.45);line-height:1.65;margin-bottom:1.8rem;font-size:.9rem}
+.m-field{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:12px;padding:.9rem 1.1rem;width:100%;color:#fff;font-family:'Cabinet Grotesk',sans-serif;font-size:.95rem;outline:none;margin-bottom:.9rem;transition:border-color .2s}
+.m-field:focus{border-color:var(--cyan)}.m-field::placeholder{color:rgba(255,255,255,.2)}
+.m-sub{width:100%;background:linear-gradient(135deg,var(--lime),var(--cyan));color:var(--ink);font-family:'Space Mono',monospace;font-weight:700;font-size:.83rem;letter-spacing:.06em;padding:1rem;border:none;border-radius:14px;cursor:none;transition:all .2s;margin-top:.3rem}
+.m-sub:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(184,255,53,.35)}
+.m-succ{display:none;text-align:center;padding:1rem 0}
+.m-succ .chk{font-size:3.5rem;margin-bottom:1rem;animation:sbounce .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes sbounce{from{transform:scale(0)}to{transform:scale(1)}}
+footer{background:#07060F;padding:3rem 2rem;border-top:1px solid rgba(255,255,255,.05);text-align:center}
+.ft-brand{font-family:'Space Mono',monospace;font-weight:700;font-size:.88rem;color:var(--lime);letter-spacing:.1em;margin-bottom:.5rem}
+.ft-sub{font-size:.78rem;color:rgba(255,255,255,.2)}
+.ft-nav{display:flex;gap:2rem;justify-content:center;margin:1.5rem 0;flex-wrap:wrap}
+.ft-nav a{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.25);text-decoration:none;transition:color .2s}
+.ft-nav a:hover{color:var(--lime)}
+.ft-copy{font-size:.7rem;color:rgba(255,255,255,.15)}
+.reveal{opacity:0;transform:translateY(35px);transition:opacity .65s ease,transform .65s ease}
+.rl{opacity:0;transform:translateX(-40px);transition:opacity .65s ease,transform .65s ease}
+.rr{opacity:0;transform:translateX(40px);transition:opacity .65s ease,transform .65s ease}
+.reveal.vis,.rl.vis,.rr.vis{opacity:1;transform:translate(0)}
+.cf{color:var(--fire)}.cl{color:var(--lime)}.cc{color:var(--cyan)}.ca{color:var(--amber)}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--ink)}::-webkit-scrollbar-thumb{background:rgba(184,255,53,.3);border-radius:2px}
+@media(max-width:900px){nav{padding:1rem 1.5rem}.nav-links,.nav-pill{display:none}.bento{grid-template-columns:1fr 1fr}.bc.w2{grid-column:span 2}.sg{grid-template-columns:1fr 1fr}.int-grid{grid-template-columns:1fr}.cost-grid{grid-template-columns:1fr}.price-card{position:static}.imp-grid{grid-template-columns:1fr 1fr}.priya{grid-template-columns:1fr;text-align:center}}
+@media(max-width:580px){.sg{grid-template-columns:1fr}.bento{grid-template-columns:1fr}.bc.w2{grid-column:span 1}.imp-grid{grid-template-columns:1fr 1fr}}
+</style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Braille Smart E-Book</h1>
-            <p>Transforming Education for Visually Impaired Students Across India</p>
-            <a href="#solution" class="cta-button">Discover Our Innovation</a>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<canvas id="particle-canvas"></canvas>
+
+<nav id="main-nav">
+  <div class="nav-brand">
+    <div class="nav-dots"><span></span><span class="off"></span><span></span><span></span><span></span><span class="off"></span></div>
+    BRAILLE E-BOOK
+  </div>
+  <ul class="nav-links">
+    <li><a href="#problem">Problem</a></li><li><a href="#solution">Solution</a></li>
+    <li><a href="#device">Device</a></li><li><a href="#cost">Cost</a></li>
+    <li><a href="#impact">Impact</a></li><li><a href="#roadmap">Roadmap</a></li>
+  </ul>
+  <button class="nav-pill" onclick="openModal()">Get Involved</button>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-grid"></div><div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="eyebrow"><span class="live-dot"></span>India's Accessibility Revolution · Goa 2025</div>
+    <h1 class="big">Reading Without<br><span class="grad-fire">Barriers.</span> Learning<br><span class="grad-cyan">Without Limits.</span></h1>
+    <p class="hero-sub">The Braille Smart E-Book brings affordable, portable Braille reading to every visually impaired student in India — powered by ESP32-CAM, starting at just ₹4,000.</p>
+    <div class="hero-btns">
+      <button class="btn-lime" onclick="goTo('solution')">Explore the Device →</button>
+      <button class="btn-outline" onclick="goTo('device')">Try Live Demo</button>
+    </div>
+    <div class="hero-device reveal">
+      <div class="dev-ring"></div>
+      <div class="dev-body">
+        <div class="dev-screen">
+          <div class="braille-row" id="hero-row"></div>
+          <div class="dev-lbl" id="hero-lbl">READING: "HELLO WORLD"</div>
         </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="stats-container">
-            <div class="stat-card">
-                <div class="stat-number">₹4-10K</div>
-                <div class="stat-label">Device Cost (20x Cheaper)</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">250g</div>
-                <div class="stat-label">Total Weight</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">400+</div>
-                <div class="stat-label">Textbooks Stored</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">8-12h</div>
-                <div class="stat-label">Battery Life</div>
-            </div>
+        <div class="dev-btns">
+          <div class="dv-btn" onclick="heroType('HELLO')">Hello</div>
+          <div class="dv-btn" onclick="heroType('INDIA')">India</div>
+          <div class="dv-btn" onclick="heroType('BRAILLE')">Braille</div>
+          <div class="dv-btn" onclick="heroType('DREAM')">Dream</div>
         </div>
-    </section>
+      </div>
+    </div>
+    <div class="stats-row reveal">
+      <div class="hst"><span class="hst-n cf" data-cnt="4" data-suf="K">0K</span><span class="hst-l">₹ Starting</span></div>
+      <div class="hst"><span class="hst-n cl" data-cnt="300" data-suf="g">0g</span><span class="hst-l">Max Weight</span></div>
+      <div class="hst"><span class="hst-n cc" data-cnt="400" data-suf="+">0+</span><span class="hst-l">Books Stored</span></div>
+      <div class="hst"><span class="hst-n ca" data-cnt="12" data-suf="hr">0hr</span><span class="hst-l">Battery Life</span></div>
+    </div>
+  </div>
+</section>
 
-    <!-- Problem Section -->
-    <section class="problem">
-        <h2 class="section-title">The Challenge We're Solving</h2>
-        <div class="problem-grid">
-            <div class="problem-card">
-                <div class="problem-icon">📚</div>
-                <h3>Book Famine</h3>
-                <p>Less than 1% of published books are available in Braille format, leaving millions of students without access to education materials.</p>
-            </div>
-            <div class="problem-card">
-                <div class="problem-icon">💰</div>
-                <h3>Cost Barrier</h3>
-                <p>Commercial Braille devices cost ₹2+ lakhs, making them unaffordable for most Indian schools and families.</p>
-            </div>
-            <div class="problem-card">
-                <div class="problem-icon">🚫</div>
-                <h3>Limited Access</h3>
-                <p>Only wealthy families and government institutions can afford existing solutions, creating massive educational inequality.</p>
-            </div>
-            <div class="problem-card">
-                <div class="problem-icon">⚖️</div>
-                <h3>Portability Issues</h3>
-                <p>Paper Braille books weigh 5-10kg per textbook, making it impossible for students to carry their study materials.</p>
-            </div>
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span class="mq-item">ESP32-CAM Powered<span class="sep">◆</span></span><span class="mq-item">₹4,000 Starting Price<span class="sep">◆</span></span><span class="mq-item">WiFi + Bluetooth Sync<span class="sep">◆</span></span><span class="mq-item">400+ Books Stored<span class="sep">◆</span></span><span class="mq-item">12-Hour Battery<span class="sep">◆</span></span><span class="mq-item">Made in India<span class="sep">◆</span></span><span class="mq-item">20× Cheaper<span class="sep">◆</span></span><span class="mq-item">Real-Time Braille Conversion<span class="sep">◆</span></span><span class="mq-item">250g Lightweight<span class="sep">◆</span></span><span class="mq-item">School-Ready Technology<span class="sep">◆</span></span>
+    <span class="mq-item">ESP32-CAM Powered<span class="sep">◆</span></span><span class="mq-item">₹4,000 Starting Price<span class="sep">◆</span></span><span class="mq-item">WiFi + Bluetooth Sync<span class="sep">◆</span></span><span class="mq-item">400+ Books Stored<span class="sep">◆</span></span><span class="mq-item">12-Hour Battery<span class="sep">◆</span></span><span class="mq-item">Made in India<span class="sep">◆</span></span><span class="mq-item">20× Cheaper<span class="sep">◆</span></span><span class="mq-item">Real-Time Braille Conversion<span class="sep">◆</span></span><span class="mq-item">250g Lightweight<span class="sep">◆</span></span><span class="mq-item">School-Ready Technology<span class="sep">◆</span></span>
+  </div>
+</div>
+
+<section id="problem">
+  <div class="wrap">
+    <div class="reveal"><span class="chip ch-fire">⚡ The Challenge</span><h2 class="st">Why 99% of Books Are Out of Reach</h2><p class="ss">Four systemic barriers lock visually impaired students out of equal education every day.</p></div>
+    <div class="bento reveal">
+      <div class="bc w2" style="border-top:3px solid var(--fire)"><span class="b-ico">📚</span><div class="b-num cf">1%</div><div class="b-tit">The Book Famine</div><div class="b-desc">Less than 1% of published books exist in Braille. Of 5 million books in India, fewer than 50,000 are accessible to visually impaired students.</div><div class="b-bg">1%</div></div>
+      <div class="bc" style="border-top:3px solid var(--amber)"><span class="b-ico">💸</span><div class="b-num ca">₹2L</div><div class="b-tit">Cost Barrier</div><div class="b-desc">Commercial Braille devices cost ₹2 lakh+. Most Indian schools can't afford even one unit.</div><div class="b-bg">₹</div></div>
+      <div class="bc" style="border-top:3px solid var(--cyan)"><span class="b-ico">🏫</span><div class="b-num cc">0</div><div class="b-tit">Rural Access</div><div class="b-desc">Rural and government schools have virtually zero access to assistive Braille technology.</div><div class="b-bg">0</div></div>
+      <div class="bc w2" style="border-top:3px solid var(--lime)"><span class="b-ico">🎒</span><div class="b-num cl">10kg</div><div class="b-tit">Portability Problem</div><div class="b-desc">A single Braille textbook weighs 5–10 kg. Students can't carry their library. They can't study flexibly or independently at home.</div><div class="b-bg">kg</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="solution" style="background:var(--ink2)">
+  <div class="wrap">
+    <div class="reveal"><span class="chip ch-lime">✦ Our Solution</span><h2 class="st">Six Advantages That Change Everything</h2><p class="ss">Re-engineered around every barrier with a smart, scalable, proudly Indian approach.</p></div>
+    <div class="sg">
+      <div class="sc sc1 reveal"><div class="shine"></div><span class="sc-badge">Affordability</span><span class="sc-ico">₹</span><h3>20× Cheaper</h3><p>₹4K–₹10K per device. A ₹50K school budget now equips 5–10 students instead of zero.</p></div>
+      <div class="sc sc2 reveal"><div class="shine"></div><span class="sc-badge">Portability</span><span class="sc-ico">⚖️</span><h3>250–350g</h3><p>Lighter than most textbooks. Fits in any school bag. Goes home, to exams — no strain.</p></div>
+      <div class="sc sc3 reveal"><div class="shine"></div><span class="sc-badge">Local</span><span class="sc-ico">🇮🇳</span><h3>Indian-Made</h3><p>Every component sourced locally. IT students can build and repair it. No imports, no delays.</p></div>
+      <div class="sc sc4 reveal"><div class="shine"></div><span class="sc-badge">Connectivity</span><span class="sc-ico">📡</span><h3>WiFi + BT Sync</h3><p>Download lesson notes instantly over school WiFi. Sync personal files via Bluetooth from any phone.</p></div>
+      <div class="sc sc5 reveal"><div class="shine"></div><span class="sc-badge">Power</span><span class="sc-ico">🔋</span><h3>12hr Battery</h3><p>Deep sleep at just 6mA. One overnight charge powers a full school day plus homework time.</p></div>
+      <div class="sc sc6 reveal"><div class="shine"></div><span class="sc-badge">Capacity</span><span class="sc-ico">📖</span><h3>400+ Books</h3><p>Entire school syllabus on one device. Swap microSD cards for thousands more titles instantly.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="int-sect" id="device">
+  <div class="wrap">
+    <div class="reveal"><span class="chip ch-cyan">⚙ Interactive Demo</span><h2 class="st">Feel the Technology in Action</h2><p class="ss">Click the buttons below to see the ESP32-CAM convert text to Braille in real time.</p></div>
+    <div class="int-grid">
+      <div class="int-dev rl">
+        <div class="b-display" id="main-disp"><div class="b-row" id="main-row"><span class="b-placeholder">— Press a button to load content —</span></div></div>
+        <div class="int-ctrls">
+          <div class="ib" onclick="loadCont('textbook',this)">📚 Textbook</div>
+          <div class="ib" onclick="loadCont('exam',this)">📝 Exam</div>
+          <div class="ib" onclick="loadCont('notes',this)">🗒 Notes</div>
+          <div class="ib" onclick="loadCont('audio',this)">🎧 Audio</div>
         </div>
-    </section>
+        <div class="wifi-row"><span style="font-size:1.2rem">📶</span><div style="flex:1"><div class="wifi-text"><strong id="ws">Ready — School WiFi Connected</strong>Status: Online</div><div class="wifi-bar"><div class="wifi-fill-el" id="wf"></div></div></div></div>
+      </div>
+      <div class="int-info rr">
+        <div class="ii"><div class="ii-num cc" data-cnt="520" data-suf="">0</div><div class="ii-body"><h4>KB of RAM</h4><p>The ESP32 processes text-to-Braille in memory with zero lag, delivering smooth real-time character updates.</p></div></div>
+        <div class="ii"><div class="ii-num cl" data-cnt="60" data-suf="">0</div><div class="ii-body"><h4>Hz Braille Refresh</h4><p>Characters transition at 60Hz — no stutter, no delay. The display keeps up with even the fastest readers.</p></div></div>
+        <div class="ii"><div class="ii-num ca" data-cnt="4" data-suf="">0</div><div class="ii-body"><h4>MB External Storage</h4><p>Swap microSD cards between devices. Content updates centrally. Data persists through any restart.</p></div></div>
+        <div class="ii"><div class="ii-num cf" data-cnt="6" data-suf="">0</div><div class="ii-body"><h4>mA Deep Sleep</h4><p>Nearly zero standby drain. Leave it on overnight — it barely touches the battery until picked up.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Solution Section -->
-    <section class="solution" id="solution">
-        <div class="solution-content">
-            <h2 class="section-title">Our Revolutionary Solution</h2>
-            <p style="text-align: center; font-size: 1.2rem; max-width: 800px; margin: 0 auto;">A smart, affordable, accessible Braille device powered by ESP32-CAM that any Indian school can implement.</p>
-            
-            <div class="solution-grid">
-                <div class="solution-feature">
-                    <h3>💵 Affordable</h3>
-                    <p>₹4,000-₹10,000 per unit - 20 times cheaper than commercial alternatives. Schools can equip multiple students instead of none.</p>
-                </div>
-                <div class="solution-feature">
-                    <h3>🎒 Portable</h3>
-                    <p>Weighs less than 300 grams - lighter than most textbooks. Students can carry their entire digital library in their school bag.</p>
-                </div>
-                <div class="solution-feature">
-                    <h3>🇮🇳 Locally Available</h3>
-                    <p>Built using components from Indian electronics vendors. Schools can source, assemble, and repair devices locally.</p>
-                </div>
-            </div>
+<section class="trans-sect">
+  <div class="wrap">
+    <div class="reveal"><span class="chip ch-amber">⠿ Live Braille Translator</span><h2 class="st">Type Any Text. See it in Braille.</h2><p class="ss">This is exactly what the device does — instantly converting digital text into Braille dots. Try your name!</p></div>
+    <div class="tbox reveal">
+      <div class="t-row"><input class="t-inp" id="t-in" type="text" placeholder="Type your name or any word..." maxlength="14" oninput="doTranslate(this.value)"><button class="t-go" onclick="doTranslate(document.getElementById('t-in').value)">Convert →</button></div>
+      <div class="b-out" id="b-out"><span class="b-placeholder">⠿ Your Braille output will appear here...</span></div>
+      <div style="margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center" id="qw-row"><span style="font-size:.72rem;color:rgba(255,255,255,.22);font-family:'Space Mono',monospace">TRY:</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="cost-sect" id="cost">
+  <div class="wrap">
+    <div class="reveal"><span class="chip ch-lime">💰 Cost Analysis</span><h2 class="st">Numbers That Tell the Real Story</h2><p class="ss">This isn't a price difference — it's the difference between zero access and full inclusion.</p></div>
+    <div class="cost-grid">
+      <div class="price-card rl">
+        <div class="p-from">Starting From</div>
+        <div class="p-big" id="pc">₹0</div>
+        <div class="p-desc">Fully functional Braille smart device. Locally assembled. Repairable by IT students.</div>
+        <div class="saving"><div class="sbig">20×</div><p>Cheaper than the nearest alternative. Same school budget. 20× more students reached.</p></div>
+        <br><button class="btn-lime" style="width:100%" onclick="openModal()">Get One for Your School →</button>
+      </div>
+      <div class="rr">
+        <div class="vs-list-el" id="vsl">
+          <div class="vs-r winner"><div><div class="vn">🏆 Our Braille E-Book <span class="wb">BEST VALUE</span></div><div class="vs-bar-el" data-w="8" style="background:linear-gradient(90deg,var(--lime),var(--cyan))"></div></div><div class="vp cl">₹4–10K</div></div>
+          <div class="vs-r"><div><div class="vn">Orbit Reader 20</div><div class="vs-bar-el" data-w="40" style="background:rgba(255,255,255,.2)"></div></div><div class="vp" style="color:rgba(255,255,255,.35)">₹80,000</div></div>
+          <div class="vs-r"><div><div class="vn">BrailleSense 6</div><div class="vs-bar-el" data-w="72" style="background:rgba(255,255,255,.2)"></div></div><div class="vp" style="color:rgba(255,255,255,.35)">₹1.8 Lakh</div></div>
+          <div class="vs-r"><div><div class="vn">BrailleNote Touch</div><div class="vs-bar-el" data-w="100" style="background:rgba(255,255,255,.2)"></div></div><div class="vp" style="color:rgba(255,255,255,.35)">₹2 Lakh+</div></div>
         </div>
-    </section>
-
-    <!-- Technical Specs -->
-    <section class="specs">
-        <h2 class="section-title">Powered by ESP32-CAM</h2>
-        <div class="specs-grid">
-            <div class="spec-item">
-                <strong>Processor</strong>
-                Dual-core 32-bit ESP32 for smooth multitasking
-            </div>
-            <div class="spec-item">
-                <strong>Connectivity</strong>
-                WiFi 802.11 b/g/n + Bluetooth 4.2
-            </div>
-            <div class="spec-item">
-                <strong>Memory</strong>
-                520KB RAM + 4MB PSRAM
-            </div>
-            <div class="spec-item">
-                <strong>Storage</strong>
-                MicroSD support up to 4GB
-            </div>
-            <div class="spec-item">
-                <strong>Power</strong>
-                6mA deep sleep, 120-180mA active reading
-            </div>
-            <div class="spec-item">
-                <strong>Dimensions</strong>
-                27×40.5×4.5mm, weighing just 8-10g
-            </div>
+        <div class="breakdown">
+          <div class="bd-lbl">Component Breakdown</div>
+          <div class="bd-row"><span>ESP32-CAM Brain</span><span style="font-family:'Space Mono',monospace;font-weight:700" class="cc">₹500–800</span></div>
+          <div class="bd-row"><span>Braille Output System</span><span style="font-family:'Space Mono',monospace;font-weight:700" class="cl">₹1,500–2,000</span></div>
+          <div class="bd-row"><span>Battery + Enclosure</span><span style="font-family:'Space Mono',monospace;font-weight:700" class="ca">₹1,000–1,500</span></div>
+          <div class="bd-row"><span>Sensors + Drivers</span><span style="font-family:'Space Mono',monospace;font-weight:700" class="cf">₹800–1,200</span></div>
+          <div class="bd-sep"></div>
+          <div class="bd-row"><span style="font-weight:800;font-size:1rem">Total</span><span style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:1.4rem" class="cl">₹4–10K</span></div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Comparison Table -->
-    <section class="comparison">
-        <div class="comparison-content">
-            <h2 class="section-title">How We Compare</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>Our Device</th>
-                        <th>BrailleNote Touch</th>
-                        <th>Orbit Reader 20</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Cost</strong></td>
-                        <td>₹4,000-10,000</td>
-                        <td>₹2,00,000+</td>
-                        <td>₹80,000+</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Weight</strong></td>
-                        <td>250-350g</td>
-                        <td>800g+</td>
-                        <td>600g</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Availability</strong></td>
-                        <td>Local, easy to source</td>
-                        <td>Import only</td>
-                        <td>Limited supply</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Repair</strong></td>
-                        <td>Can be done in school labs</td>
-                        <td>Requires sending abroad</td>
-                        <td>Specialized service</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Accessibility</strong></td>
-                        <td>Multiple units per school</td>
-                        <td>Perhaps 1 per school</td>
-                        <td>Maybe 1 per district</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
+<section class="imp-sect" id="impact">
+  <div class="wrap">
+    <div class="reveal"><span class="chip ch-amber">❤ Real Impact</span><h2 class="st">Changing Lives, One Device at a Time</h2></div>
+    <div class="imp-grid reveal">
+      <div class="imp-card"><div class="imp-n" data-cnt="20" data-suf="×">0×</div><div class="imp-l">Cheaper than the nearest commercial alternative</div></div>
+      <div class="imp-card"><div class="imp-n" data-cnt="400" data-suf="+">0+</div><div class="imp-l">Textbooks stored on a single device, WiFi-accessible</div></div>
+      <div class="imp-card"><div class="imp-n" data-cnt="12" data-suf="hr">0hr</div><div class="imp-l">Full reading time on a single overnight charge</div></div>
+      <div class="imp-card"><div class="imp-n" data-cnt="99" data-suf="%">0%</div><div class="imp-l">Of books were out of reach — this closes that gap</div></div>
+    </div>
+    <div class="priya reveal">
+      <div class="priya-av">👧</div>
+      <div>
+        <q>When we let her try our prototype, she spent four hours reading her Biology textbook without stopping. Her mother told us afterward that it was the first time she saw Priya study independently without waiting for someone to help.</q>
+        <div class="credit">— Priya, 16 · Aspiring Doctor · Goa · 95% Average</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Impact Section -->
-    <section class="impact">
-        <h2 class="section-title">Educational Impact</h2>
-        <div class="impact-grid">
-            <div class="impact-card">
-                <h3>📚 Access to Content</h3>
-                <p>Students can read any digital textbook, notes, and research material instantly. No more waiting for Braille conversions.</p>
-            </div>
-            <div class="impact-card">
-                <h3>🎯 Learning Independence</h3>
-                <p>Full editing, searching, and note-taking abilities empower students to manage their own studies effectively.</p>
-            </div>
-            <div class="impact-card">
-                <h3>👥 Classroom Inclusion</h3>
-                <p>Teachers can see what students are reading in real-time through WiFi, enabling better support and engagement.</p>
-            </div>
-            <div class="impact-card">
-                <h3>🚀 Skill Development</h3>
-                <p>Daily interaction improves Braille literacy, tech skills, and prepares students for modern careers.</p>
-            </div>
-        </div>
-    </section>
+<section id="roadmap" style="background:var(--ink2)">
+  <div class="wrap">
+    <div class="reveal"><span class="chip ch-cyan">🗺 Roadmap</span><h2 class="st">Our Vision for Braille India</h2><p class="ss">From Goa's classroom to a national accessibility programme.</p></div>
+    <div class="timeline reveal">
+      <div class="t-item done"><div class="t-ph cl">Phase 1 — Now ✓</div><div class="t-ti">Working Prototype</div><div class="t-de">Core prototype fully functional. Cost optimisation completed. Classroom testing underway in Goa schools.</div><div class="t-tags"><span class="t-tag">✅ Complete</span><span class="t-tag">Goa Schools</span><span class="t-tag">Cost Optimised</span></div></div>
+      <div class="t-item active"><div class="t-ph cc">Phase 2 — 6–12 Months</div><div class="t-ti">Enhanced Braille Display</div><div class="t-de">Multi-line Braille display showing full lines simultaneously. Tactile graphics support for diagrams, graphs, and mathematical notation.</div><div class="t-tags"><span class="t-tag">Multi-line</span><span class="t-tag">Tactile Graphics</span><span class="t-tag">Math Support</span></div></div>
+      <div class="t-item"><div class="t-ph ca">Phase 3 — 1–2 Years</div><div class="t-ti">AI-Powered Conversion</div><div class="t-de">AI automatically optimises any digital book for Braille reading. Government school rollout across multiple Indian states.</div><div class="t-tags"><span class="t-tag">AI Integration</span><span class="t-tag">Multi-State</span><span class="t-tag">Gov Rollout</span></div></div>
+      <div class="t-item"><div class="t-ph cf">Phase 4 — 3–5 Years</div><div class="t-ti">National Accessibility Programme</div><div class="t-de">10,000+ students empowered. Partnership with Indian education bodies. Braille literacy transformed across India.</div><div class="t-tags"><span class="t-tag">10K+ Students</span><span class="t-tag">National Scale</span><span class="t-tag">India-Wide</span></div></div>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <p> 2025 Braille Smart E-Book Project | Made in Goa, India</p>
-        <p style="margin-top: 10px; opacity: 0.8;">Empowering education through accessible technology</p>
-    </footer>
+<section id="faq">
+  <div class="wrap">
+    <div class="reveal"><span class="chip ch-fire">❓ FAQ</span><h2 class="st">Questions We Always Get Asked</h2></div>
+    <div class="faq-list reveal">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>How long does Braille conversion take?</span><div class="faq-icon">+</div></div><div class="faq-a"><div class="faq-a-in">Instant — if content is already digital, the ESP32 converts text to Braille commands in real-time. Zero delay between a student requesting a book and reading it in Braille.</div></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>What if the device breaks?</span><div class="faq-icon">+</div></div><div class="faq-a"><div class="faq-a-in">Every component is available from local Indian electronics vendors. Any IT student or basic technician can repair it. We've specifically designed for repairability, not planned obsolescence.</div></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Can sighted students use this too?</span><div class="faq-icon">+</div></div><div class="faq-a"><div class="faq-a-in">Absolutely! We're building screen reader and audio output options so this device serves all students — including those with partial vision, dyslexia, or other learning differences.</div></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>How does the school WiFi sync work?</span><div class="faq-icon">+</div></div><div class="faq-a"><div class="faq-a-in">The device connects to the school's existing WiFi network. Teachers upload lessons to a central server, and all student devices download automatically. No cables, no manual transfers, no delays.</div></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Is this project open source?</span><div class="faq-icon">+</div></div><div class="faq-a"><div class="faq-a-in">Yes! Schools, students, and developers can access our hardware schematics and software. We want this to be a community effort that spreads organically across India.</div></div></div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+<section class="cta-sect">
+  <div class="wrap">
+    <div class="reveal">
+      <div style="display:flex;gap:8px;justify-content:center;margin-bottom:2rem">
+        <div style="width:10px;height:10px;border-radius:50%;background:var(--fire);animation:pulse 1.4s infinite"></div>
+        <div style="width:10px;height:10px;border-radius:50%;background:var(--amber);animation:pulse 1.4s .2s infinite"></div>
+        <div style="width:10px;height:10px;border-radius:50%;background:var(--lime);animation:pulse 1.4s .4s infinite"></div>
+        <div style="width:10px;height:10px;border-radius:50%;background:var(--cyan);animation:pulse 1.4s .6s infinite"></div>
+      </div>
+      <h2 class="cta-h">Every Student Deserves Equal Access to Education.</h2>
+      <p class="cta-p">Education is a right, not a privilege. In digital India, no student should be denied access due to their visual ability. Join us.</p>
+      <div class="cta-btns">
+        <button class="btn-lime" onclick="openModal()">Get Involved Today →</button>
+        <button class="btn-outline" onclick="goTo('problem')">See the Problem</button>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // Animate elements on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+<footer>
+  <div class="ft-brand">⠃⠇ BRAILLE E-BOOK · MADE IN GOA, INDIA</div>
+  <div class="ft-sub">Powered by ESP32-CAM · Empowering Every Mind Since 2025</div>
+  <div class="ft-nav"><a href="#problem">Problem</a><a href="#solution">Solution</a><a href="#device">Device</a><a href="#cost">Cost</a><a href="#impact">Impact</a><a href="#roadmap">Roadmap</a><a href="#faq">FAQ</a></div>
+  <div class="ft-copy">© 2025 Braille Smart E-Book Project · Education is a Right, Not a Privilege</div>
+</footer>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 1s ease forwards';
-                }
-            });
-        }, observerOptions);
+<div class="modal-ov" id="modal-ov" onclick="closeOnBg(event)">
+  <div class="modal">
+    <button class="m-close" onclick="closeModal()">✕</button>
+    <div id="mform">
+      <div style="font-size:2rem;margin-bottom:.8rem">🌟</div>
+      <h3>Join the Movement</h3>
+      <p>Tell us who you are and how you'd like to help bring accessible education to every Indian student.</p>
+      <input class="m-field" id="mn" placeholder="Your Name" type="text"/>
+      <input class="m-field" id="me" placeholder="Email Address" type="email"/>
+      <select class="m-field" id="mr"><option value="" disabled selected>I am a...</option><option>Student</option><option>Teacher / Administrator</option><option>Parent</option><option>NGO / Advocate</option><option>Government / Policy</option><option>Media / Press</option><option>Curious Human</option></select>
+      <button class="m-sub" onclick="submitModal()">Count Me In →</button>
+    </div>
+    <div class="m-succ" id="msucc"><div class="chk">✅</div><h3 style="font-family:'Clash Display',sans-serif;font-size:1.8rem;margin-bottom:.5rem">You're In!</h3><p style="color:rgba(255,255,255,.45)">Thank you for joining the movement. Together, we're making education truly inclusive across India.</p></div>
+  </div>
+</div>
 
-        document.querySelectorAll('.stat-card, .problem-card, .solution-feature, .spec-item, .impact-card').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
+<script>
+// CURSOR
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function ar(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(ar)})();
+document.querySelectorAll('button,a,.sc,.bc,.faq-q,.ib,.dv-btn,[onclick]').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='20px';cur.style.height='20px';ring.style.width='60px';ring.style.height='60px';ring.style.borderColor='rgba(184,255,53,.9)'});
+  el.addEventListener('mouseleave',()=>{cur.style.width='12px';cur.style.height='12px';ring.style.width='40px';ring.style.height='40px';ring.style.borderColor='rgba(184,255,53,.5)'});
+});
+
+// PARTICLES
+const canvas=document.getElementById('particle-canvas');const ctx=canvas.getContext('2d');
+let W,H,pts=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+resize();window.addEventListener('resize',resize);
+const cols=['#FF3D2E','#FFAB00','#B8FF35','#00E5FF','#7C3AED'];
+for(let i=0;i<65;i++)pts.push({x:Math.random()*1920,y:Math.random()*1080,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.5+.5,c:cols[i%5],a:Math.random()*.5+.1});
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.c;ctx.globalAlpha=p.a;ctx.fill()});
+  for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<110){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=pts[i].c;ctx.globalAlpha=(1-d/110)*.05;ctx.lineWidth=.5;ctx.stroke()}}
+  ctx.globalAlpha=1;requestAnimationFrame(draw);
+}
+draw();
+
+// BENTO MOUSE GLOW
+document.querySelectorAll('.bc').forEach(c=>{c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');c.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%')})});
+
+// BRAILLE DATA
+const BR={A:[[1,0],[0,0],[0,0]],B:[[1,0],[1,0],[0,0]],C:[[1,1],[0,0],[0,0]],D:[[1,1],[0,1],[0,0]],E:[[1,0],[0,1],[0,0]],F:[[1,1],[1,0],[0,0]],G:[[1,1],[1,1],[0,0]],H:[[1,0],[1,1],[0,0]],I:[[0,1],[1,0],[0,0]],J:[[0,1],[1,1],[0,0]],K:[[1,0],[0,0],[1,0]],L:[[1,0],[1,0],[1,0]],M:[[1,1],[0,0],[1,0]],N:[[1,1],[0,1],[1,0]],O:[[1,0],[0,1],[1,0]],P:[[1,1],[1,0],[1,0]],Q:[[1,1],[1,1],[1,0]],R:[[1,0],[1,1],[1,0]],S:[[0,1],[1,0],[1,0]],T:[[0,1],[1,1],[1,0]],U:[[1,0],[0,0],[1,1]],V:[[1,0],[1,0],[1,1]],W:[[0,1],[1,1],[0,1]],X:[[1,1],[0,0],[1,1]],Y:[[1,1],[0,1],[1,1]],Z:[[1,0],[0,1],[1,1]],' ':[[0,0],[0,0],[0,0]],'0':[[0,1],[1,1],[0,0]],'1':[[1,0],[0,0],[0,0]],'2':[[1,1],[0,0],[0,0]],'3':[[1,1],[0,1],[0,0]],'4':[[1,1],[0,1],[1,0]],'5':[[1,0],[0,1],[1,0]],'!':[[0,1],[1,0],[1,0]],'.':[[0,0],[1,1],[0,1]],',':[[0,0],[1,0],[0,0]]};
+
+function makeCell(ch,large){
+  const c=BR[ch.toUpperCase()]||BR[' '];
+  const g=document.createElement('div');g.className='bch-grp';
+  const grid=document.createElement('div');grid.className='bch-grid';
+  c.forEach(row=>row.forEach(d=>{const dot=document.createElement('div');dot.className='bpt '+(d?'on':'off');if(large)dot.style.cssText='width:9px;height:9px';grid.appendChild(dot)}));
+  const l=document.createElement('div');l.className='bch-lbl';l.textContent=ch===' '?'_':ch.toUpperCase();
+  g.appendChild(grid);g.appendChild(l);return g;
+}
+function miniCell(ch){
+  const c=BR[ch.toUpperCase()]||BR[' '];
+  const cell=document.createElement('div');cell.className='bcell';
+  c.forEach(row=>row.forEach(d=>{const dot=document.createElement('div');dot.className='bp '+(d?'on':'off');cell.appendChild(dot)}));
+  return cell;
+}
+
+// HERO DEVICE
+function heroType(text){
+  const row=document.getElementById('hero-row'),lbl=document.getElementById('hero-lbl');
+  row.innerHTML='';lbl.textContent='READING: "'+text+'"';
+  text.split('').forEach((ch,i)=>{setTimeout(()=>{const c=miniCell(ch);c.style.opacity='0';c.style.transform='scale(.5)';c.style.transition='all .3s';row.appendChild(c);requestAnimationFrame(()=>requestAnimationFrame(()=>{c.style.opacity='1';c.style.transform='scale(1)'}))},i*100)});
+}
+heroType('HELLO WORLD');
+
+// DEVICE DEMO
+const conts={textbook:{t:'BIOLOGY',w:'TEXTBOOK'},exam:{t:'EXAM 2025',w:'EXAM PAPER'},notes:{t:'CLASS NOTES',w:'MY NOTES'},audio:{t:'AUDIO SYNC',w:'LISTENING'}};
+function loadCont(type,el){
+  document.querySelectorAll('.ib').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  const c=conts[type];
+  document.getElementById('ws').textContent='Downloading: '+c.w+'...';
+  const wf=document.getElementById('wf');wf.style.transition='none';wf.style.width='0%';
+  setTimeout(()=>{wf.style.transition='width 1s ease';wf.style.width='100%'},50);
+  const row=document.getElementById('main-row');row.innerHTML='<span class="b-placeholder">Loading...</span>';
+  setTimeout(()=>{
+    row.innerHTML='';
+    c.t.split('').forEach((ch,i)=>{setTimeout(()=>{const cell=makeCell(ch,true);cell.style.opacity='0';cell.style.transform='translateY(8px)';cell.style.transition=`all .25s ${i*.04}s`;row.appendChild(cell);requestAnimationFrame(()=>requestAnimationFrame(()=>{cell.style.opacity='1';cell.style.transform='translateY(0)'}))},i*50)});
+    document.getElementById('ws').textContent='✓ Ready — '+c.w+' loaded';
+  },1100);
+}
+
+// TRANSLATOR
+function doTranslate(text){
+  const out=document.getElementById('b-out');out.innerHTML='';
+  if(!text){out.innerHTML='<span class="b-placeholder">⠿ Your Braille output will appear here...</span>';return}
+  text.slice(0,14).split('').forEach((ch,i)=>{
+    const cell=makeCell(ch,true);cell.style.opacity='0';cell.style.transform='translateY(12px)';cell.style.transition=`all .3s ${i*.045}s`;
+    out.appendChild(cell);requestAnimationFrame(()=>requestAnimationFrame(()=>{cell.style.opacity='1';cell.style.transform='translateY(0)'}));
+  });
+}
+const qws=['INDIA','PRIYA','LEARN','SCHOOL','DREAM','GOA','READ','HOPE','BRAILLE'];
+const qwr=document.getElementById('qw-row');
+qws.forEach(w=>{
+  const b=document.createElement('button');
+  b.style.cssText='background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:.3rem .85rem;font-size:.73rem;color:rgba(255,255,255,.45);cursor:none;transition:all .2s;font-family:Cabinet Grotesk,sans-serif;font-weight:600';
+  b.textContent=w;
+  b.addEventListener('mouseenter',()=>{b.style.background='rgba(0,229,255,.08)';b.style.borderColor='rgba(0,229,255,.3)';b.style.color='#00E5FF'});
+  b.addEventListener('mouseleave',()=>{b.style.background='rgba(255,255,255,.05)';b.style.borderColor='rgba(255,255,255,.1)';b.style.color='rgba(255,255,255,.45)'});
+  b.onclick=()=>{document.getElementById('t-in').value=w;doTranslate(w)};
+  qwr.appendChild(b);
+});
+
+// REVEALS
+const ro=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('vis'),i*70);ro.unobserve(e.target)}});
+},{threshold:.08});
+document.querySelectorAll('.reveal,.rl,.rr').forEach(el=>ro.observe(el));
+
+// COUNTERS
+const co=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('[data-cnt]').forEach(el=>{
+        const target=+el.dataset.cnt,suf=el.dataset.suf||'';
+        let c=0;const step=Math.max(1,Math.ceil(target/55));
+        const t=setInterval(()=>{c=Math.min(c+step,target);el.textContent=c+suf;if(c>=target)clearInterval(t)},22);
+      });
+      co.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+document.querySelectorAll('.stats-row,.imp-grid,.int-info').forEach(el=>co.observe(el));
+
+// PRICE COUNTER
+const po=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){let c=0;const t=setInterval(()=>{c=Math.min(c+160,4000);document.getElementById('pc').textContent='₹'+c.toLocaleString('en-IN');if(c>=4000)clearInterval(t)},18);po.unobserve(e.target)}});
+},{threshold:.3});
+const pe=document.querySelector('.price-card');if(pe)po.observe(pe);
+
+// VS BARS
+const vo=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.vs-bar-el').forEach(b=>{setTimeout(()=>b.style.width=b.dataset.w+'%',200)});vo.unobserve(e.target)}});
+},{threshold:.2});
+const vl=document.getElementById('vsl');if(vl)vo.observe(vl);
+
+// WIFI ANIM
+setTimeout(()=>{const w=document.getElementById('wf');if(w)w.style.width='85%'},1200);
+
+// FAQ
+function toggleFaq(el){
+  const item=el.parentElement,ans=item.querySelector('.faq-a'),isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(f=>{f.classList.remove('open');f.querySelector('.faq-a').style.maxHeight='0'});
+  if(!isOpen){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px'}
+}
+
+// MODAL
+function openModal(){document.getElementById('modal-ov').classList.add('open');document.body.style.overflow='hidden'}
+function closeModal(){document.getElementById('modal-ov').classList.remove('open');document.body.style.overflow=''}
+function closeOnBg(e){if(e.target===document.getElementById('modal-ov'))closeModal()}
+function submitModal(){
+  const n=document.getElementById('mn').value.trim(),em=document.getElementById('me').value.trim(),r=document.getElementById('mr').value;
+  if(!n||!em||!r){alert('Please fill in all fields!');return}
+  document.getElementById('mform').style.display='none';document.getElementById('msucc').style.display='block';
+  setTimeout(()=>{closeModal();setTimeout(()=>{document.getElementById('mform').style.display='block';document.getElementById('msucc').style.display='none';['mn','me'].forEach(id=>document.getElementById(id).value='');document.getElementById('mr').value=''},400)},3200);
+}
+
+// NAV SCROLL
+window.addEventListener('scroll',()=>{document.getElementById('main-nav').style.padding=window.scrollY>50?'.7rem 3rem':'1.1rem 3rem'});
+
+// HELPER
+function goTo(id){document.getElementById(id)&&document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+</script>
 </body>
 </html>
